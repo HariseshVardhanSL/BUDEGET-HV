@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget-H</title>
+    <link rel="icon" href="../TODO-HVM/h symol.jpg"/>
+    <link rel="stylesheet" href="./n.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="bg">
+        <div class="title">
+            <center class="cen1">
+                <h1 class="tb">BUDGET</h1><span><img class="img1" src="../TODO-HVM/h symol.jpg"/></span>
+            </center>
+        </div>
+    </div>
+    <div id="top">
+        <div id="one" onclick="bal()">
+            <center>
+                <h4 id="text">Amt in acc/Balance:</h4> <p id="balance">0</p>
+            </center>
+        </div>
+    </div>
+    <div id="top1">
+        <div id="two" onclick="bals()">
+            <center>
+                <h4 id="text">Savings:</h4> <p id="balances">0</p>
+            </center>
+        </div>
+        <div id="three" onclick="sl()">
+            <center>
+                <h4 id="text">Spending limit:</h4> <p id="balancesl">0</p>
+            </center>
+        </div>
+    </div>
+    <div id="top2">
+        <div id="four" onclick="cred()">
+            <center>
+                <h4 id="text">Credited:</h4> <p id="balancec">0</p>
+            </center>
+        </div>
+        <div id="five" onclick="debi()">
+            <center>
+                <h4 id="text">Dedited:</h4> <p id="balanced">0</p>
+            </center>
+        </div>
+    </div>
+
+
+    <!-- <div class="lc"> -->
+    <ul id="listcontainer">
+
+    </ul>
+    
+    <button id="chart" onclick="redirectToChartPage()">View Graph</button>
+       
+    
+    
+    <!-- </div> -->
+    <!-- <canvas id="transactionChart"></canvas> -->
+    
+    
+    <!-- <canvas id="chart" width="400" height="200"></canvas> -->
+        
+    
+
+    <script src="./n3.js"></script>
+    
+</body>
+</html>

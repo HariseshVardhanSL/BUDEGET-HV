@@ -1,0 +1,203 @@
+html{
+    background-image: url(./image.png);
+    
+}
+.cen1{
+    position: relative;
+    top: 30%;
+}
+.tb{
+    font-weight:900;
+    display: inline-block;
+    position: relative;
+    bottom: 15px;
+    color: grey;
+
+}
+.img1{
+    position: absolute;
+    height: 60%;
+    border-radius: 50%;
+}
+.title{
+    position: absolute;
+    left: 10%;
+    top: 4%;
+    width: 80%;
+    height: 17%;
+    background-color: lightgrey;
+    /* background-color:rgb(188, 186, 186); */
+    border-radius: 30px;
+    border: 2px solid gray;
+}
+#top{
+    display: flex;
+    justify-content: center;
+}
+#one{
+    color:black;
+    background-color: whitesmoke;
+    border: 2px solid grey;
+    width: fit-content;
+    border-radius: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
+    position:absolute;
+    top: 22%;
+    display: inline-block;
+}
+#top1{
+    display: flex;
+    justify-content: space-evenly;
+}
+#two{
+    color:black ;
+    background-color: whitesmoke;
+    border: 2px solid grey;
+    min-width: 30%;
+    width: fit-content;
+    border-radius: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
+    position:absolute;
+    top: 38%;
+    left: 10%;
+    display: inline-block;
+}
+#three{
+    color:black ;
+    background-color: whitesmoke;
+    border: 2px solid grey;
+    min-width: 30%;
+    width: fit-content;
+    border-radius: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
+    position:absolute;
+    top: 38%;
+    right: 10%;
+    display: inline-block;
+}
+#top2{
+    display: flex;
+    justify-content: space-evenly;
+}
+#four{
+    background-color:whitesmoke ;
+    border: 2px solid grey;
+    min-width: 30%;
+    width: fit-content;
+    border-radius: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
+    position:absolute;
+    top: 54%;
+    left: 10%;
+    display: inline-block;
+}
+#five{
+    background-color:whitesmoke ;
+    border: 2px solid grey;
+    min-width: 30%;
+    width: fit-content;
+    border-radius: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
+    position:absolute;
+    top: 54%;
+    right: 10%;
+    display: inline-block;
+}
+
+
+
+
+
+
+#chart{
+    position: absolute;
+    top: 71%;
+    left: 39%;
+    padding: 7px 7px;
+    border-radius: 5px;
+    background-color:  #1889e7;
+    color: whitesmoke;
+}
+#chart:hover{
+    background-color:  #0056b3;
+}
+@media screen and (min-width:700px){
+    #chart{
+        position: absolute;
+        top: 71%;
+        left: 45%;
+    }
+}
+@media screen and (min-width:450px){
+    #chart{
+        position: absolute;
+        top: 71%;
+        left: 43%;
+    }
+}
+@media screen and (min-width:1024px){
+    #chart{
+        position: absolute;
+        top: 71%;
+        left: 46%;
+    }
+}
+
+
+#listcontainer {
+    width: 97%;
+    background-color: black;
+    position: absolute;
+    top: 75%;
+    border-radius: 14px;
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    border-radius: 14px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+.delete-btn {
+    cursor: pointer;
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: red;
+}
+
+.reason-input {
+    flex-grow: 1;
+    margin: 0 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
+/* .chart-container {
+    height: 200px;
+    width: 97%;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 14px;
+    padding: 10px;
+} */
+
+
+

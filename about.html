@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Chart</title>
+    <link rel="stylesheet" href="./chart.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="chartContainer">
+        <canvas id="transactionChart"></canvas>
+    </div>
+    <button onclick="goBack()">Back</button>
+    <script>
+        // Fetch transaction data from localStorage
+        function getChartData() {
+            const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            const labels = [];
+            const savings = [];
+            const credits = [];
+            const debits = [];
+            const spendingLimits = [];  // New array to store spending limits
+
+            // Fetch the spending limit from localStorage
+            const spendingLimit = Number(localStorage.getItem("spendingLimit")) || 0;
+
+            transactions.forEach(({ timestamp, type, amount }) => {
+                labels.push(timestamp);
+                if (type === "credit") {
+                    credits.push(Number(amount));
+                } else {
+                    debits.push(Number(amount));
+                }
+                savings.push(Number(localStorage.getItem("savings")));
+                spendingLimits.push(spendingLimit); // Add the spending limit to the chart data
+            });
+
+            return { labels, savings, credits, debits, spendingLimits };
+        }
+
+        // Initialize Chart.js
+        function initializeChart() {
+            const { labels, savings, credits, debits, spendingLimits } = getChartData();
+            const ctx = document.getElementById("transactionChart").getContext("2d");
+
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: "Savings",
+                            data: savings,
+                            borderColor: "blue",
+                            backgroundColor: "rgba(0, 0, 255, 0.1)",
+                            fill: true,
+                        },
+                        {
+                            label: "Credit",
+                            data: credits,
+                            borderColor: "green",
+                            backgroundColor: "rgba(0, 255, 0, 0.1)",
+                            fill: true,
+                        },
+                        {
+                            label: "Debit",
+                            data: debits,
+                            borderColor: "red",
+                            backgroundColor: "rgba(255, 0, 0, 0.1)",
+                            fill: true,
+                        },
+                        {
+                            label: "Spending Limit",  // Added Spending Limit dataset
+                            data: spendingLimits,
+                            borderColor: "purple",
+                            backgroundColor: "rgba(128, 0, 128, 0.1)",
+                            fill: true,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: "top",
+                        },
+                        title: {
+                            display: true,
+                            text: "Transaction Overview with Spending Limit",
+                        },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: "Date & Time" } },
+                        y: { title: { display: true, text: "Amount" }, beginAtZero: true },
+                    },
+                },
+            });
+        }
+
+        // Go back to the main page
+        function goBack() {
+            window.location.href = "./index.html"; // Change to your main page's filename
+        }
+
+        // Initialize the chart on page load
+        initializeChart();
+    </script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Chart</title>
+    <link rel="stylesheet" href="./chart.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="chartContainer">
+        <canvas id="transactionChart"></canvas>
+    </div>
+    <button onclick="goBack()">Back</button>
+    <script>
+        // Fetch transaction data from localStorage and filter for the last 30 days
+        function getChartData() {
+            const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            const labels = [];
+            const savings = [];
+            const credits = [];
+            const debits = [];
+            const spendingLimits = [];
+
+            // Fetch the spending limit from localStorage
+            const spendingLimit = Number(localStorage.getItem("spendingLimit")) || 0;
+
+            // Get the current date and filter transactions for the last 30 days
+            const today = new Date();
+            const thirtyDaysAgo = new Date(today);
+            thirtyDaysAgo.setDate(today.getDate() - 30);
+
+            transactions.forEach(({ timestamp, type, amount }) => {
+                const transactionDate = new Date(timestamp);
+                
+                // Filter transactions to include only those from the last 30 days
+                if (transactionDate >= thirtyDaysAgo) {
+                    labels.push(timestamp);
+                    if (type === "credit") {
+                        credits.push(Number(amount));
+                    } else {
+                        debits.push(Number(amount));
+                    }
+                    savings.push(Number(localStorage.getItem("savings")));
+                    spendingLimits.push(spendingLimit); // Add the spending limit to the chart data
+                }
+            });
+
+            return { labels, savings, credits, debits, spendingLimits };
+        }
+
+        // Initialize Chart.js
+        function initializeChart() {
+            const { labels, savings, credits, debits, spendingLimits } = getChartData();
+            const ctx = document.getElementById("transactionChart").getContext("2d");
+
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: "Savings",
+                            data: savings,
+                            borderColor: "blue",
+                            backgroundColor: "rgba(0, 0, 255, 0.1)",
+                            fill: true,
+                        },
+                        {
+                            label: "Credit",
+                            data: credits,
+                            borderColor: "green",
+                            backgroundColor: "rgba(0, 255, 0, 0.1)",
+                            fill: true,
+                        },
+                        {
+                            label: "Debit",
+                            data: debits,
+                            borderColor: "red",
+                            backgroundColor: "rgba(255, 0, 0, 0.1)",
+                            fill: true,
+                        },
+                        {
+                            label: "Spending Limit",  // Added Spending Limit dataset
+                            data: spendingLimits,
+                            borderColor: "purple",
+                            backgroundColor: "rgba(128, 0, 128, 0.1)",
+                            fill: true,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: "top",
+                        },
+                        title: {
+                            display: true,
+                            text: "Transaction Overview with Spending Limit (Last 30 Days)",
+                        },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: "Date & Time" } },
+                        y: { title: { display: true, text: "Amount" }, beginAtZero: true },
+                    },
+                },
+            });
+        }
+
+        // Go back to the main page
+        function goBack() {
+            window.location.href = "./nd.html"; // Change to your main page's filename
+        }
+
+        // Initialize the chart on page load
+        initializeChart();
+    </script>
+</body>
+</html> -->
